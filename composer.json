@@ -1,0 +1,49 @@
+{
+    "name": "jovertpalonpon/laradash",
+    "description": "Dashboard builder on top of Laravel framework",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "laravel",
+        "package"
+    ],
+    "authors": [
+        {
+            "name": "Jovert Palonpon",
+            "email": "palonponjovertlota@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0|^9.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "JovertPalonpon\\Laradash\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist"
+    },
+    "scripts": {
+        "test": "phpunit --colors=always"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JovertPalonpon\\Laradash\\LaradashServiceProvider"
+            ]
+        }
+    }
+}
