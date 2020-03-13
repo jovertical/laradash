@@ -40,7 +40,7 @@ class InstallCommand extends Command
 
     /**
      * Remove previously published assets
-     * 
+     *
      * @return bool
      */
     private function purgeAssets()

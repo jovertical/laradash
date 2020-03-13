@@ -34,14 +34,14 @@ class LaradashServiceProvider extends ServiceProvider
 
     /**
      * Register publishable resources.
-     * 
+     *
      * @return void
      */
     private function registerPublishables()
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/laradash.php' => config_path('laradash.php')
+                __DIR__ . '/../config/laradash.php' => config_path('laradash.php'),
             ], 'laradash-config');
 
             $this->publishes([
