@@ -16,8 +16,8 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Test Suite">
-            <directory suffix=".php">./tests</directory>
+        <testsuite name="Laradash Test Suite">
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
@@ -25,4 +25,10 @@
             <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:BxLfatt3EG9UcTvN50BExwinzD8bwOJgpUOjmITXSfk="/>
+        <env name="CACHE_DRIVER" value="file"/>
+        <env name="DB_CONNECTION" value="testing"/>
+    </php>
 </phpunit>

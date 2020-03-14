@@ -2,6 +2,7 @@
 
 namespace JovertPalonpon\Laradash;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use JovertPalonpon\Laradash\Console\InstallCommand;
 
@@ -14,12 +15,45 @@ class LaradashServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (! config('laradash.enabled')) {
+            return;
+        }
+
         $this->registerPublishables();
         $this->registerCommands();
+        $this->registerRoutes();
     }
 
     /**
-     * Register console commands.
+     * Register any package services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/laradash.php',
+            'laradash'
+        );
+    }
+
+    /**
+     * Register package routes.
+     *
+     * @return void
+     */
+    private function registerRoutes()
+    {
+        Route::group([
+            'namespace' => 'JovertPalonpon\Laradash\Http\Controllers',
+            'prefix' => config('laradash.path'),
+        ], function () {
+            $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
+        });
+    }
+
+    /**
+     * Register package's console commands.
      *
      * @return void
      */
@@ -33,7 +67,7 @@ class LaradashServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register publishable resources.
+     * Register package's publishable resources.
      *
      * @return void
      */
