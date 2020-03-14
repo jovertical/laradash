@@ -4,6 +4,7 @@ namespace JovertPalonpon\Laradash;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
 use JovertPalonpon\Laradash\Console\InstallCommand;
 
 class LaradashServiceProvider extends ServiceProvider
@@ -15,13 +16,14 @@ class LaradashServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! config('laradash.enabled')) {
+        if (!config('laradash.enabled')) {
             return;
         }
 
         $this->registerPublishables();
         $this->registerCommands();
         $this->registerRoutes();
+        $this->registerViews();
     }
 
     /**
@@ -32,9 +34,21 @@ class LaradashServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/laradash.php',
+            __DIR__ . '/../config/laradash.php',
             'laradash'
         );
+    }
+
+    /**
+     * Register package views.
+     *
+     * @return void
+     */
+    private function registerViews()
+    {
+        Inertia::setRootView('vendor/laradash/app');
+
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laradash');
     }
 
     /**
@@ -48,7 +62,7 @@ class LaradashServiceProvider extends ServiceProvider
             'namespace' => 'JovertPalonpon\Laradash\Http\Controllers',
             'prefix' => config('laradash.path'),
         ], function () {
-            $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
+            $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
         });
     }
 
@@ -79,8 +93,12 @@ class LaradashServiceProvider extends ServiceProvider
             ], 'laradash-config');
 
             $this->publishes([
-                __DIR__.'/../public' => public_path('vendor/laradash'),
+                __DIR__ . '/../public' => public_path('vendor/laradash'),
             ], 'laradash-assets');
+
+            $this->publishes([
+                __DIR__ . '/../resources/views' => resource_path('views/vendor/laradash'),
+            ], 'laradash-views');
         }
     }
 }

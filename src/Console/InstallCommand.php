@@ -35,6 +35,9 @@ class InstallCommand extends Command
         $this->purgeAssets();
         $this->callSilent('vendor:publish', ['--tag' => 'laradash-assets']);
 
+        $this->comment('Publishing Laradash Views...');
+        $this->callSilent('vendor:publish', ['--tag' => 'laradash-views']);
+
         $this->info('Laradash installed successfully.');
     }
 

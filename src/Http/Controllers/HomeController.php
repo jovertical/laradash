@@ -3,6 +3,7 @@
 namespace JovertPalonpon\Laradash\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
@@ -13,6 +14,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return 'Hello Laradash!';
+        return Inertia::render('Home');
     }
 }

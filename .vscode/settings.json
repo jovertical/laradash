@@ -1,4 +1,9 @@
 {
+    "css.validate": false,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
     "intelephense.telemetry.enabled": false,
     "intelephense.format.enable": true,
     "intelephense.diagnostics.undefinedTypes": false,
@@ -9,5 +14,5 @@
     "intelephense.diagnostics.undefinedProperties": false,
     "intelephense.diagnostics.undefinedVariables": false,
     "php.suggest.basic": false,
-    "php.validate.enable": false,
+    "php.validate.enable": false
 }

@@ -1,5 +1,9 @@
 {
     "recommendations": [
+        "hex-ci.stylelint-plus",
+        "octref.vetur",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
         "bmewburn.vscode-intelephense-client"
     ]
 }
