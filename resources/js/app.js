@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import Vue from 'vue'
 import VueMeta from 'vue-meta'
 import { InertiaApp } from '@inertiajs/inertia-vue'
@@ -7,7 +6,7 @@ import 'styles/nprogress.css'
 Vue.use(InertiaApp)
 Vue.use(VueMeta)
 
-Vue.prototype.$route = (...args) => route(...args).url()
+Vue.prototype.$route = (...args) => route(...args)
 
 const app = document.getElementById('app')
 
@@ -19,7 +18,8 @@ new Vue({
         h(InertiaApp, {
             props: {
                 initialPage: JSON.parse(app.dataset.page),
-                resolveComponent: name => require(`./Pages/${name}`).default,
+                resolveComponent: name =>
+                    import(`./Pages/${name}`).then(module => module.default),
             },
         }),
 }).$mount(app)

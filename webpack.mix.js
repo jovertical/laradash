@@ -34,7 +34,10 @@ mix.setPublicPath('public')
         ],
     })
     .webpackConfig({
-        output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
+        output: {
+            publicPath: '/vendor/laradash/',
+            chunkFilename: '[name].js?id=[chunkhash]'
+        },
         resolve: {
             alias: {
                 'styles': path.resolve('resources/css'),

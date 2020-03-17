@@ -1,5 +1,9 @@
 {
-    "extends": ["eslint:recommended", "plugin:vue/recommended"],
+    "extends": [
+        "eslint-plugin-vue",
+        "eslint:recommended",
+        "plugin:vue/recommended"
+    ],
     "rules": {
         "indent": ["error", 4],
         "quotes": ["warn", "single"],
