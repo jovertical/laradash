@@ -46,7 +46,7 @@ class LaradashServiceProvider extends ServiceProvider
      */
     private function registerViews()
     {
-        Inertia::setRootView('vendor/laradash/app');
+        Inertia::setRootView('laradash::app');
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laradash');
     }
@@ -61,6 +61,7 @@ class LaradashServiceProvider extends ServiceProvider
         Route::group([
             'namespace' => 'JovertPalonpon\Laradash\Http\Controllers',
             'prefix' => config('laradash.path'),
+            'middleware' => 'web'
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
         });
