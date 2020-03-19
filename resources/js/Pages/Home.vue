@@ -1,5 +1,10 @@
 <template>
-    <h1>Home</h1>
+    <div>
+        <h1>Home</h1>
+        <form @submit.prevent="logout">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -9,6 +14,15 @@ export default {
     metaInfo: {
         title: 'Home',
     },
+
     layout: Layout,
+
+    methods: {
+        logout() {
+            this.$inertia.post(this.$route('laradash.logout'), {
+                _token: this.$page.csrf_token,
+            })
+        },
+    },
 }
 </script>

@@ -3,6 +3,7 @@
 namespace JovertPalonpon\Laradash;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 use JovertPalonpon\Laradash\Console\InstallCommand;
@@ -33,10 +34,31 @@ class LaradashServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerInertia();
         $this->mergeConfigFrom(
             __DIR__ . '/../config/laradash.php',
             'laradash'
         );
+    }
+
+    /**
+     * Register Inertia configurations.
+     *
+     * @return void
+     */
+    private function registerInertia()
+    {
+        Inertia::version(function () {
+            return md5_file(public_path('mix-manifest.json'));
+        });
+
+        Inertia::share([
+            'errors' => function () {
+                return Session::get('errors')
+                    ? Session::get('errors')->getBag('default')->getMessages()
+                    : (object) [];
+            },
+        ]);
     }
 
     /**
@@ -60,8 +82,9 @@ class LaradashServiceProvider extends ServiceProvider
     {
         Route::group([
             'namespace' => 'JovertPalonpon\Laradash\Http\Controllers',
+            'as' => 'laradash.',
             'prefix' => config('laradash.path'),
-            'middleware' => 'web'
+            'middleware' => 'web',
         ], function () {
             $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
         });

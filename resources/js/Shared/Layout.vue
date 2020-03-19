@@ -5,14 +5,14 @@
             <ul>
                 <li
                     :class="
-                        $route().current() === 'home'
+                        $route().current() === 'laradash.home'
                             ? 'bg-blue-lightest text-blue'
                             : 'text-gray-500'
                     "
                     class="px-6 py-3"
                 >
                     <inertia-link
-                        :href="$route('home')"
+                        :href="$route('laradash.home')"
                         class="inline-flex items-center"
                     >
                         <icon name="home" size="lg" class="mr-2" />
@@ -21,14 +21,14 @@
                 </li>
                 <li
                     :class="
-                        $route().current() === 'settings'
+                        $route().current() === 'laradash.settings'
                             ? 'bg-blue-lightest text-blue'
                             : 'text-gray-500'
                     "
                     class="px-6 py-3"
                 >
                     <inertia-link
-                        :href="$route('settings')"
+                        :href="$route('laradash.settings')"
                         class="inline-flex items-center"
                     >
                         <icon name="cog" size="lg" class="mr-2" />

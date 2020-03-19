@@ -8,9 +8,9 @@ use Inertia\Inertia;
 class SettingsController extends Controller
 {
     /**
-     * Display the Laradash's settings.
+     * Display Laradash settings.
      *
-     * @return string
+     * @return \Inertia\Response
      */
     public function index()
     {

@@ -8,9 +8,9 @@ use Inertia\Inertia;
 class HomeController extends Controller
 {
     /**
-     * Display the Laradash's dashboard.
+     * Display the Laradash dashboard.
      *
-     * @return string
+     * @return \Inertia\Response
      */
     public function index()
     {
