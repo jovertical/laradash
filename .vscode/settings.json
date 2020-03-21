@@ -5,7 +5,7 @@
     "editor.insertSpaces": true,
     "editor.detectIndentation": false,
     "intelephense.telemetry.enabled": false,
-    "intelephense.format.enable": true,
+    "intelephense.format.enable": false,
     "intelephense.diagnostics.undefinedTypes": false,
     "intelephense.diagnostics.undefinedFunctions": false,
     "intelephense.diagnostics.undefinedConstants": false,

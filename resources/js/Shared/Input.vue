@@ -27,7 +27,7 @@ export default {
         id: {
             type: String,
             default() {
-                return `text-input-${this._uid}`
+                return `input-${this._uid}`
             },
         },
         type: {

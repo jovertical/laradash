@@ -123,6 +123,10 @@ class LaradashServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../resources/views' => resource_path('views/vendor/laradash'),
             ], 'laradash-views');
+
+            $this->publishes([
+                __DIR__ . '/../resources/views' => resource_path('views/vendor/mail'),
+            ], 'laravel-mail');
         }
     }
 }

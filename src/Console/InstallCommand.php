@@ -38,6 +38,9 @@ class InstallCommand extends Command
         $this->comment('Publishing Laradash Views...');
         $this->callSilent('vendor:publish', ['--tag' => 'laradash-views']);
 
+        $this->comment('Publishing Laravel Emails...');
+        $this->callSilent('vendor:publish', ['--tag' => 'laravel-mail']);
+
         $this->info('Laradash installed successfully.');
     }
 
