@@ -2,9 +2,9 @@
     <button
         :id="id"
         ref="button"
-        class="bg-blue text-white rounded-md h-10 px-4"
+        class="relative inline-flex items-center text-white rounded-md h-10 px-4"
         :class="{
-            'bg-blue': variant === 'primary',
+            'bg-indigo-600 hover:bg-indigo-500': variant === 'primary',
         }"
     >
         <slot />

@@ -11,13 +11,14 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use JovertPalonpon\Laradash\Mail\PasswordReset;
+use JovertPalonpon\Laradash\Queries\DeletePasswordResetQuery;
 
 class ForgotPasswordController extends Controller
 {
     /**
      * Display the form to request a password reset link.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function showLinkRequestForm()
     {
@@ -39,7 +40,7 @@ class ForgotPasswordController extends Controller
         $user = User::where('email', $request->input('email'))->first();
         $token = Str::random(64);
 
-        $this->destroyResetToken($user);
+        DeletePasswordResetQuery::delete($user);
 
         if (! $this->storeResetToken($user, $token)) {
             throw ValidationException::withMessages([
@@ -52,19 +53,6 @@ class ForgotPasswordController extends Controller
         Mail::to($user)->send(new PasswordReset($user, $link));
 
         return back();
-    }
-
-    /**
-     * Destroy any existing password reset token.
-     *
-     * @param \App\User
-     * @return bool
-     */
-    protected function destroyResetToken(User $user)
-    {
-        return DB::table('password_resets')
-            ->where('email', $user->email)
-            ->delete();
     }
 
     /**

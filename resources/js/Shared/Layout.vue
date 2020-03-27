@@ -6,7 +6,7 @@
                 <li
                     :class="
                         $route().current() === 'laradash.home'
-                            ? 'bg-blue-lightest text-blue'
+                            ? 'bg-indigo-100 text-indigo-600'
                             : 'text-gray-500'
                     "
                     class="px-6 py-3"
@@ -22,7 +22,7 @@
                 <li
                     :class="
                         $route().current() === 'laradash.settings'
-                            ? 'bg-blue-lightest text-blue'
+                            ? 'bg-indigo-100 text-indigo-600'
                             : 'text-gray-500'
                     "
                     class="px-6 py-3"

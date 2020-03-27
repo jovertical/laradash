@@ -7,10 +7,10 @@
             :id="id"
             ref="input"
             v-bind="$attrs"
-            class="block border rounded w-full px-4 py-2 text-gray-700"
+            class="block border focus:border-2 rounded w-full px-4 py-2 text-gray-700"
             :class="{
                 'mb-1 focus:border-red-700': errors.length,
-                'focus:border-blue': errors.length === 0,
+                'focus:border-indigo-600': errors.length === 0,
             }"
             :type="type"
             :value="value"
@@ -23,6 +23,7 @@
 <script>
 export default {
     inheritAttrs: false,
+
     props: {
         id: {
             type: String,
@@ -41,6 +42,7 @@ export default {
             default: () => [],
         },
     },
+
     methods: {
         focus() {
             this.$refs.input.focus()

@@ -1,13 +1,13 @@
 <template>
     <form
-        @submit.prevent="login"
+        @submit.prevent="reset"
         class="rounded-md bg-white shadow-xl"
         novalidate
     >
         <div class="px-10 py-12">
             <div>
                 <h2 class="text-center font-bold text-3xl text-gray-700">
-                    Welcome back!
+                    Reset Password
                 </h2>
             </div>
 
@@ -16,6 +16,7 @@
                     v-model="form.email"
                     :errors="$page.errors.email"
                     type="email"
+                    name="email"
                     label="Email"
                 />
             </div>
@@ -25,32 +26,27 @@
                     v-model="form.password"
                     :errors="$page.errors.password"
                     type="password"
+                    name="password"
                     label="Password"
                 />
             </div>
 
-            <label for="remember" class="mt-6 select-none flex items-center">
-                <input
-                    v-model="form.remember"
-                    id="remember"
-                    type="checkbox"
-                    class="mr-1"
+            <div class="mt-5">
+                <laradash-input
+                    v-model="form.password_confirmation"
+                    :errors="$page.errors.password_confirmation"
+                    type="password"
+                    name="password_confirmation"
+                    label="Confirm Password"
                 />
-                <span class="text-sm">Remember Me</span>
-            </label>
+            </div>
         </div>
 
         <div
-            class="rounded-md flex items-center justify-between h-20 px-10 bg-gray-100"
+            class="rounded-md flex items-center justify-end h-20 px-10 bg-gray-100"
         >
-            <inertia-link
-                class="text-gray-700 hover:underline"
-                :href="$route('laradash.password.request')"
-            >
-                Forgot password?
-            </inertia-link>
             <laradash-button type="submit">
-                Login
+                Reset Password
             </laradash-button>
         </div>
     </form>
@@ -61,22 +57,29 @@ import Layout from '@/Shared/AuthLayout'
 
 export default {
     metaInfo: {
-        title: 'Login',
+        title: 'Reset Password',
     },
 
     layout: Layout,
+
+    props: {
+        token: String,
+    },
 
     data: () => ({
         form: {
             email: '',
             password: '',
-            remember: null,
+            password_confirmation: '',
         },
     }),
 
     methods: {
-        login() {
-            this.$inertia.post(this.$route('laradash.login'), this.form)
+        async reset() {
+            await this.$inertia.post(this.$route('laradash.password.update'), {
+                token: this.token,
+                ...this.form,
+            })
         },
     },
 }
