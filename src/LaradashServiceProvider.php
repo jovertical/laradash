@@ -34,6 +34,11 @@ class LaradashServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(
+            \Illuminate\Contracts\Http\Kernel::class,
+            \JovertPalonpon\Laradash\Http\Kernel::class
+        );
+        
         $this->registerInertia();
         $this->mergeConfigFrom(
             __DIR__ . '/../config/laradash.php',
